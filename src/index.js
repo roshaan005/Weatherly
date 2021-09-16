@@ -1,88 +1,49 @@
 import './styles.css'
-import cloudImage from "./images/storm.png"
-import searchicon from "./images/search-3-16 (1).png"
-import background from "./images/diego-jimenez-XHDtPRj535A-unsplash.jpg"
+import { setUpUi} from './DOM'
+import{localStorage2} from "./localStorage"
+import {domUpdate} from "./DOMupdate"
+import moment from 'moment';
 
-const backgroundPicture = document.createElement("div");
-const pictureSection = document.createElement("div")
-const detailsMenu = document.createElement("div");
-const searchContainer = document.createElement("section");
-const searchBar = document.createElement("input");
-searchBar.setAttribute("type","text");
-const searchBtn = document.createElement("div");
-const searchIcon  = new Image()
-searchIcon.src = searchicon
-const temperatureDetails = document.createElement("section");
-const temperatureText = document.createElement("div");
-const weatherDescription = document.createElement("div");
-const weatherIllustration = new Image();
-weatherIllustration.src = cloudImage;
-const weatherStatus = document.createElement("span");
-const cityDescription = document.createElement("div");
-const cityName = document.createElement("div");
-const cityTime = document.createElement("div");
-const details = document.createElement("section");
-const detialsHolder = document.createElement("ul");
-const  humidityCard = document.createElement("li");
-const  feelsLikeCard = document.createElement("li");
-const  sunRiseCard = document.createElement("li");
-const  sunSetCard = document.createElement("li");
-const  countryCard = document.createElement("li");
-const  windSpeedCard = document.createElement("li");
+const clock = function(){
+    const dateToday = new Date()
+    let h = dateToday.getHours();
+    let m = dateToday.getMinutes();
+    let s = dateToday.getSeconds();
+    let session = "AM"
 
-// classes 
-backgroundPicture.classList.add("background");
-detailsMenu.classList.add("details-menu");
-searchContainer.classList.add("search-container");
-searchBar.classList.add("search-bar");
-searchBtn.classList.add("search-btn");
-pictureSection.classList.add("picture");
-temperatureDetails.classList.add("temperature-details");
-temperatureText.classList.add("temperature");
-weatherDescription.classList.add("description");
-weatherIllustration.classList.add("weather-illustartion");
-weatherStatus.classList.add("weather");
-cityDescription.classList.add("city");
-cityName.classList.add("city-name");
-cityTime.classList.add("time");
-details.classList.add("details");
-detialsHolder.classList.add("details-holder");
-humidityCard.classList.add("display-card");
-feelsLikeCard.classList.add("display-card");
-sunRiseCard.classList.add("display-card");
-sunSetCard.classList.add("display-card");
-countryCard.classList.add("display-card");
-windSpeedCard.classList.add("display-card");
+    h= (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+    s = (s < 10) ? "0" + s : s;
+     
+    if(h == 0){
+        h = 12;
+    }
+    if(h>12){
+        h = h-12;
+        session = "PM"
+    }
 
 
-temperatureText.textContent = "36C"
+    setUpUi.cityTime.textContent = `${h}:${m}:${s} ${session}`
 
-// appending to parents 
+    setTimeout(clock,1000);
+
+}
+    
+clock()
 
 
-searchContainer.appendChild(searchBar);
-searchBtn.appendChild(searchIcon)
-searchContainer.appendChild(searchBtn);
-temperatureDetails.appendChild(temperatureText);
-weatherDescription.appendChild(weatherIllustration);
-weatherDescription.appendChild(weatherStatus);
-temperatureDetails.appendChild(weatherDescription);
-cityDescription.appendChild(cityName);
-cityDescription.appendChild(cityTime);
-temperatureDetails.appendChild(cityDescription);
-detialsHolder.appendChild(humidityCard);
-detialsHolder.appendChild(feelsLikeCard);
-detialsHolder.appendChild(sunSetCard);
-detialsHolder.appendChild(sunRiseCard);
-detialsHolder.appendChild(countryCard);
-detialsHolder.appendChild(windSpeedCard);
-details.appendChild(detialsHolder);
-detailsMenu.appendChild(searchContainer);
-detailsMenu.appendChild(temperatureDetails);
-detailsMenu.appendChild(details);
 
-backgroundPicture.style.backgroundImage = `url(${background})`
-backgroundPicture.appendChild(pictureSection);
-backgroundPicture.appendChild(detailsMenu);
-const body = document.querySelector("body")
-body.appendChild(backgroundPicture)
+
+setUpUi.appendToBody();
+let cityArray = [];
+setUpUi.searchBtn.addEventListener("click",function(){
+    const city = setUpUi.searchBar.value;
+    cityArray.push(city)
+    domUpdate.fetchData(cityArray);
+    setUpUi.searchBar.value = ""
+    
+})
+
+domUpdate.fetchData(["karachi"]);
+

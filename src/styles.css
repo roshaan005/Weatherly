@@ -35,9 +35,9 @@ html, body{
     
 
 }
-.weather{
+.weather-span{
     color:white;
-    font-size:0.5em;
+    font-size:1em;
 }
 .details-holder{
     grid-gap:1rem;
@@ -66,6 +66,9 @@ html, body{
     align-items: center;
 
 }
+.time{
+    color:black;
+}
 .background{
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -73,8 +76,17 @@ html, body{
     background-size: cover;
     height:100%;
     display:flex;
-
+    animation:setIn;
+    animation-duration: 2s;
     align-items: flex-end;
+}
+@keyframes setIn{
+    0%{
+        opacity:0%;
+    }
+    100%{
+        opacity:100%;
+    }
 }
 .details-menu{
     
@@ -110,11 +122,11 @@ html, body{
 }
 .temperature{
     font-size:3.3rem;
-    color:white;
+    color:rgb(2, 1, 1);
 }
 .weather{
     display:block;
-    color:white;
+    color:rgb(0, 0, 0);
     margin-top:5%;
     text-align:center;
     /* position:relative;
@@ -124,6 +136,7 @@ html, body{
     
 
 }
+
 .city{
     margin-top:20%;
     display:flex;
@@ -133,7 +146,7 @@ html, body{
 }
 .city-name{
     font-size:2.2rem;
-    color:white
+    color:rgb(5, 3, 3)
 }
 ::-webkit-scrollbar {
     width: 1px;
@@ -256,7 +269,7 @@ html, body{
 
     }
     .time{
-        color:white;
+        color:rgb(0, 0, 0);
         font-size:1rem;
     }
     
@@ -388,7 +401,7 @@ html, body{
 
     }
     .time{
-        color:white;
+        color:rgb(0, 0, 0);
         font-size:1.2;
     }
     
