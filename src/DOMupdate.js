@@ -10,7 +10,7 @@ const domUpdate = (function(){
        let lastElement = array[array.length-1]
        async function getWeather(){
            try{
-            const response = await fetch((`http://api.openweathermap.org/data/2.5/weather?q=${lastElement}&APPID=30ecd00f770dcc0ab9ff7521f781caea`),{mode:"cors"});
+            const response = await fetch((`https://api.openweathermap.org/data/2.5/weather?q=${lastElement}&APPID=30ecd00f770dcc0ab9ff7521f781caea`),{mode:"cors"});
             const weather = await response.json();
             console.log(weather);
             updateUi(weather);
