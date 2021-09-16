@@ -40,10 +40,14 @@ let cityArray = [];
 setUpUi.searchBtn.addEventListener("click",function(){
     const city = setUpUi.searchBar.value;
     cityArray.push(city)
-    domUpdate.fetchData(cityArray);
-    setUpUi.searchBar.value = ""
+    localStorage2.addToLocalStorage(cityArray);
+   
     
 })
 
-domUpdate.fetchData(["karachi"]);
+
+
+ domUpdate.fetchData(["karachi"]);
+
+
 
