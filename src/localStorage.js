@@ -1,18 +1,18 @@
 import { domUpdate } from "./DOMupdate";
 
-const localStorage2 = (function(){
-    const addToLocalStorage = function(array){
-        let cityArrayForStorage = localStorage.getItem('city')
-        ? JSON.parse(localStorage.getItem('city'))
-        : [];
-        localStorage.setItem('city', JSON.stringify(array));
-        const cityRecordArray = JSON.parse(localStorage.getItem("city"));
-        domUpdate.fetchData(cityRecordArray);
-        
+const localStorageModule = (function(){
+    let cityList = localStorage.getItem('items')
+  ? JSON.parse(localStorage.getItem('items'))
+  : []
+    const addToLocalStorage = function(cityName){
+    
+    cityList.push(cityName);
+    localStorage.setItem("cities",JSON.stringify(cityList));
+  
+   
     }
+    return{addToLocalStorage}
 
-    return {addToLocalStorage}
-
-})()
-export{localStorage2}
+})();
+export{localStorageModule}
 
