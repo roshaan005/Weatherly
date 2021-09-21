@@ -1,8 +1,8 @@
 import './styles.css'
 import { setUpUi} from './DOM'
-import{localStorage2} from "./localStorage"
+import{localStorage2, localStorageModule} from "./localStorage"
 import {domUpdate} from "./DOMupdate"
-import moment from 'moment';
+import moment, { locale } from 'moment';
 
 const clock = function(){
     const dateToday = new Date()
@@ -40,14 +40,28 @@ let cityArray = [];
 setUpUi.searchBtn.addEventListener("click",function(){
     const city = setUpUi.searchBar.value;
     cityArray.push(city)
-    localStorage2.addToLocalStorage(cityArray);
+    domUpdate.fetchData(city)
+    localStorageModule.addToLocalStorage(city)
    
     
 })
 
 
+const localStorageForDisplay = JSON.parse(localStorage.getItem("cities"))
 
- domUpdate.fetchData(["karachi"]);
+if(localStorageForDisplay.length==0){
+    domUpdate.fetchData("karachi")
+}else{
+    domUpdate.fetchData(localStorageForDisplay[localStorageForDisplay.length-1])
+
+}
+
+
+
+
+
+
+
 
 
 
