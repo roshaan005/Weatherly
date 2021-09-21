@@ -1,6 +1,6 @@
-import cloudImage from "./images/storm.png"
+
 import searchicon from "./images/search-3-16 (1).png"
-import background from "./images/diego-jimenez-XHDtPRj535A-unsplash.jpg"
+
 
 
 const setUpUi = (function(){
@@ -17,7 +17,6 @@ const setUpUi = (function(){
     const temperatureText = document.createElement("div");
     const weatherDescription = document.createElement("div");
     const weatherIllustration = new Image();
-    weatherIllustration.src = cloudImage;
     const weatherStatus = document.createElement("span");
     const cityDescription = document.createElement("div");
     const cityName = document.createElement("div");
@@ -103,7 +102,7 @@ const setUpUi = (function(){
 
  }
 
-  return {appendToBody,searchBar,searchBtn,temperatureText,cityName,weatherStatus,humidityCard,humiditySpan,feelsLikeSpan,feelsLikeCard,
+  return {appendToBody,weatherIllustration,searchBar,searchBtn,temperatureText,cityName,weatherStatus,humidityCard,humiditySpan,feelsLikeSpan,feelsLikeCard,
 sunRiseSpan,sunRiseCard,backgroundPicture,sunSetSpan,cityTime,sunSetCard,countryCard,countrySpan,descriptionCard,descriptionSpan}
 
 })()
