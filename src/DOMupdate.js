@@ -1,25 +1,40 @@
 import { setUpUi } from "./DOM";
 import moment from 'moment';
 import rainyImage from "./images/noah-silliman-i2J9jnvaAbU-unsplash.jpg";
-import cloudyImage from "./images/patrick-hendry-40AndmX3lvU-unsplash.jpg";
+import rain  from "./images/cloudy.png"
+import haze from "./images/wind.png"
+import sun from "./images/sun.png"
+import cloud from "./images/cloud.png"
+import hazeyImage from "./images/daniel-gregoire-hZe5eOlvqDk-unsplash.jpg"
 import clouds from "./images/d-ng-tr-n-qu-c-AAmYBHqbAEs-unsplash.jpg"
-import sunnyPicture from  "./images/desert-1654439_1280.jpg"
+import sunnyPicture from  "./images/marko-blazevic-GFFGe2eGmiM-unsplash.jpg"
 
 const domUpdate = (function(){
-    const fetchData = function(array){
-       let lastElement = array[array.length-1]
+        const arrayRemove = function(arr,value){
+            return arr.filter(function(ele){ 
+                return ele != value; 
+            });
+
+        }
+
+    const fetchData = function(lastElement){
+      const localStorageArray = JSON.parse(localStorage.getItem("cities"))
        async function getWeather(){
            try{
             const response = await fetch((`https://api.openweathermap.org/data/2.5/weather?q=${lastElement}&APPID=30ecd00f770dcc0ab9ff7521f781caea`),{mode:"cors"});
             const weather = await response.json();
-            console.log(weather);
             updateUi(weather);
             changeBackground(weather);
             
 
            }
-           catch(err){
-               console.log(err)
+           catch(error){
+              const newArray =  arrayRemove(localStorageArray,lastElement)
+              newArray.push("karachi")
+              localStorage.setItem("cities",JSON.stringify(newArray))
+               
+               
+               
            }
            
         };
@@ -75,14 +90,20 @@ const domUpdate = (function(){
         const weatherStatus = weather.weather[0].main;
         if(weatherStatus == "Rain"|| weatherStatus == "Drizzle"){
             setUpUi.backgroundPicture.style.backgroundImage = `url(${rainyImage})`
+            setUpUi.weatherIllustration.src = rain
         }
-        else if(weatherStatus=="Clouds" || weatherStatus == "Haze"|| weatherStatus == "Smoke"){
+        else if(weatherStatus=="Clouds"){
             setUpUi.backgroundPicture.style.backgroundImage = `url(${clouds})`
-            
+            setUpUi.weatherIllustration.src = cloud
 
         }
         else if (weatherStatus == "Clear"){
             setUpUi.backgroundPicture.style.backgroundImage = `url(${sunnyPicture})`
+            setUpUi.weatherIllustration.src = sun
+        }
+        else if(weatherStatus=="Smoke"||weatherStatus=="Haze"){
+            setUpUi.backgroundPicture.style.backgroundImage = `url(${hazeyImage})`
+            setUpUi.weatherIllustration.src = haze
         }
     }
     
