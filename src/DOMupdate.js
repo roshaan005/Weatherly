@@ -56,24 +56,24 @@ const domUpdate = (function(){
         setUpUi.temperatureText.textContent = `${Math.round(convertToCentigrade(weather.main.temp))}°C`;
         setUpUi.cityName.textContent = weather.name;
         setUpUi.weatherStatus.textContent = weather.weather[0].main;
-        setUpUi.humidityCard.textContent = "humidity";
+        setUpUi.humidityCard.textContent = "Humidity";
         setUpUi.humiditySpan.textContent = `${weather.main.humidity}%`;
         setUpUi.humidityCard.appendChild(setUpUi.humiditySpan);
-        setUpUi.feelsLikeCard.textContent = "feels like";
+        setUpUi.feelsLikeCard.textContent = "Feels like";
         setUpUi.feelsLikeSpan.textContent = `${Math.round(convertToCentigrade(weather.main.feels_like))}°C`;
         setUpUi.feelsLikeCard.appendChild(setUpUi.feelsLikeSpan);
-         setUpUi.countryCard.textContent = "country"
+         setUpUi.countryCard.textContent = "Country"
         setUpUi.countrySpan.textContent =  weather.sys.country;
         setUpUi.countryCard.appendChild(setUpUi.countrySpan);
-        setUpUi.descriptionCard.textContent = "description";
+        setUpUi.descriptionCard.textContent = "Description";
         setUpUi.descriptionSpan.textContent = weather.weather[0].description;
         setUpUi.descriptionCard.appendChild(setUpUi.descriptionSpan);
-        setUpUi.sunRiseCard.textContent = "sun rise";
+        setUpUi.sunRiseCard.textContent = "Sun rise";
         const sunRiseUnixTime = weather.sys.sunrise;
         const sunRiseFormatedTime = moment.unix(sunRiseUnixTime).format("HH:MM");
         setUpUi.sunRiseSpan.textContent = sunRiseFormatedTime;
         setUpUi.sunRiseCard.appendChild(setUpUi.sunRiseSpan);
-        setUpUi.sunSetCard.textContent = "sun set";
+        setUpUi.sunSetCard.textContent = "Sun set";
         const sunSetUnixTime = weather.sys.sunset;
         const sunSetFormatedTime = moment.unix(sunSetUnixTime).format("HH:MM");
         setUpUi.sunSetSpan.textContent = sunSetFormatedTime;
@@ -105,6 +105,7 @@ const domUpdate = (function(){
             setUpUi.backgroundPicture.style.backgroundImage = `url(${hazeyImage})`
             setUpUi.weatherIllustration.src = haze
         }
+      
     }
     
 
