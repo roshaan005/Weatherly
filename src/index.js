@@ -49,7 +49,7 @@ setUpUi.searchBtn.addEventListener("click",function(){
 
 const localStorageForDisplay = JSON.parse(localStorage.getItem("cities"))
 
-if(localStorageForDisplay.length==0){
+if(localStorage.length==0){
     domUpdate.fetchData("karachi")
 }else{
     domUpdate.fetchData(localStorageForDisplay[localStorageForDisplay.length-1])
