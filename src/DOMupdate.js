@@ -65,9 +65,19 @@ const domUpdate = (function(){
          setUpUi.countryCard.textContent = "Country"
         setUpUi.countrySpan.textContent =  weather.sys.country;
         setUpUi.countryCard.appendChild(setUpUi.countrySpan);
+       
         setUpUi.descriptionCard.textContent = "Description";
-        setUpUi.descriptionSpan.textContent = weather.weather[0].description;
-        setUpUi.descriptionCard.appendChild(setUpUi.descriptionSpan);
+        if(weather.weather[0].description =="scattered clouds" || weather.weather[0].description =="broken clouds"|| weather.weather[0].description=="overcast clouds"){
+            setUpUi.descriptionSpan.textContent = "cloudy";
+            setUpUi.descriptionCard.appendChild(setUpUi.descriptionSpan);
+            
+        }else{
+            setUpUi.descriptionSpan.textContent = weather.weather[0].description;
+            setUpUi.descriptionCard.appendChild(setUpUi.descriptionSpan);
+
+        }
+        
+       
         setUpUi.sunRiseCard.textContent = "Sun rise";
         const sunRiseUnixTime = weather.sys.sunrise;
         const sunRiseFormatedTime = moment.unix(sunRiseUnixTime).format("HH:MM");
